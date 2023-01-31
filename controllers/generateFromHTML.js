@@ -4,7 +4,7 @@ const path = require('path');
 
 const generateFromHTML = async (req, res) => {
   console.log(req.query);
-  console.log(path.join(__dirname, '/a'));
+
   try {
     let options = { format: 'A5' };
     // Example of options with args //
@@ -23,9 +23,11 @@ const generateFromHTML = async (req, res) => {
       data = pdfBuffer;
       console.log('PDF Buffer:-', pdfBuffer);
     });
-
     res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', 'attachment; filename=name.Pdf');
+    res.setHeader(
+      'Content-Disposition',
+      `attachment; filename=itcard-receipt.Pdf`
+    );
     res.setHeader('Content-Length', data.length);
     return res.end(data);
   } catch (error) {
