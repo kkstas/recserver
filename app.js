@@ -8,6 +8,6 @@ const pdfRouter = require('./routes/index');
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use('/pdf', pdfRouter);
+app.use(pdfRouter);
 
 app.listen(PORT, () => console.log(`Server is listening on port: ${PORT}...`));

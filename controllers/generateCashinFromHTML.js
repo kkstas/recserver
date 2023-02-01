@@ -1,8 +1,8 @@
 const html_to_pdf = require('html-pdf-node');
-const createHTML = require('../util/createHTML');
+const createCashinHTML = require('../util/createCashinHTML');
 const path = require('path');
 
-const generateFromHTML = async (req, res) => {
+const generateCashinFromHTML = async (req, res) => {
   console.log(req.query);
 
   try {
@@ -11,7 +11,7 @@ const generateFromHTML = async (req, res) => {
     // let options = { format: 'A4', args: ['--no-sandbox', '--disable-setuid-sandbox'] };
     let file;
     if (req.query) {
-      const createdFromTemplate = createHTML(req.query);
+      const createdFromTemplate = createCashinHTML(req.query);
       file = {
         content: createdFromTemplate,
       };
@@ -35,4 +35,4 @@ const generateFromHTML = async (req, res) => {
   }
 };
 
-module.exports = generateFromHTML;
+module.exports = generateCashinFromHTML;
