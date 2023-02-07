@@ -8,7 +8,10 @@ const createCashinHTML = ({ a, b, c, d, e, f, g, h }) => {
   const localizationStreet = e; // state.blockManager.localizationStreet
   const localizationCity = f; // state.blockManager.localizationCity
   const tempcardNumberFormatted = g; // tempcardNumberFormatted
-  const recognizedAllBanknotesAmount = h; // device.cashmodule.cashInExt.data.recognizedAllBanknotesAmount
+  const recognizedAllBanknotesAmount = String(h).slice(2); // device.cashmodule.cashInExt.data.recognizedAllBanknotesAmount
+  const trxTypeVal = String(h).slice(0, 2);
+  const trxTypeValFormatted =
+    trxTypeVal === 'co' || trxTypeVal === 'bo' ? 'WYPŁATA' : 'WPŁATA';
   // localhost:3000/pdf?a=12:24:43&b=RNET6338&c=asldkfjwod fw&d=ITCARD&e=ul. Zwycięska 43&f=Wrocław&g=234234*******3242342&h=200,00 PLN
   const html = `
 <!-- start a5 div -->
@@ -74,7 +77,7 @@ ${planetCashSvg}
       <!--  start kolumna lewa  -->
       <div style="">
         <p style="font-size: 17px">Numer karty:</p>
-        <p style="font-size: 19px; font-weight: 600">WPŁATA:</p>
+        <p style="font-size: 19px; font-weight: 600">${trxTypeValFormatted}:</p>
         <!--  end kolumna lewa  -->
       </div>
       <!--  start kolumna prawa -->
